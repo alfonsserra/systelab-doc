@@ -1,6 +1,6 @@
 # Versioning
 
-Systelab libraries version numbers indicate the level of changes that are introduced by the release. This use of [semantic versioning](https://semver.org/) helps you understand the potential impact of updating to a new version.
+Version numbers indicate the level of changes that are introduced by the release. The use of [semantic versioning](https://semver.org/) helps you understand the potential impact of updating to a new version.
 
 Version numbers have three parts: major.minor.patch. For example, version 5.2.9 indicates major version 5, minor version 2, and patch version 9.
 
@@ -61,7 +61,7 @@ In order to add changes to a maintenance branch:
  - Once the Pull Request is approved it is time to merge the changes. Will be the submitter the responsible for merging.
  - Finally, the working branch could be removed.
 
-> Before creating the PR, be sure to update, as needed, the npm library version in the package.json file.
+> In Angular, before creating the PR, be sure to update, as needed, the npm library version in the package.json file.
 
 ### Bug fixing policy
 
@@ -73,11 +73,11 @@ Detected bugs should be tracked as repository issues with the 'Bug' tag. So, the
 
 # Releasing
 
-## Library Release
+## Release
 
 The submitter should create a new release, with the tag version vX.Y.Z and release title X.Y.Z.
 
-Travis will publish the library to npm.
+For Angular libraries, Travis will publish the library to npm.
 
 ## Application Release
 
