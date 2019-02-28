@@ -12,76 +12,92 @@ Minor releases contain new smaller features. Minor releases are fully backward-c
 
 Patch releases are low risk, bug fix releases. No developer assistance is expected during update.
 
-# Branches
+# Branching
 
-## Working branches
+Currently, two popular development approaches can be considered for branching: Git flow and trunk-based development. Both have their own pros and cons.
 
-Working branches should be named according to the following pattern:
+In most cases we are going to use Git flow for our projects, but for the libraries, trunk-based development could be the best option to iterate quickly.
 
-{BaseBranch}-{Type}{Issue#}-{IssueShortTitle}
 
-Where:
-- {BaseBranch}: Name of the maintenance branch or master used to create the working branch
-- {Type}: Letter indicating the type of issue addressed on the branch
-    - F: New feature
-    - B: Bug
-- {Issue#}: GitHub issue number associated to the feature or defect to be addressed on the branch. That would allow better tracking between branches and change description.
-- {ShortTitle}: Short title of the change. Written using [UpperCamelCase](https://es.wikipedia.org/wiki/CamelCase)
+## Git FLow
+
+In the Git flow development model, one main development branch is considered.
+
+Feature branches are created from de development branch and once they are done, pull requests are created.
+
+Once the pull requests are accepted and merged to the main branch, and it’s decided that the main branch has reached enough maturity to be released,
+a separate branch is created to prepare a final version.
+In this branch the application is tested and fixing is done. After this, the branch is merged with the master branch and tag it with the release version.
+In the meantime, new features can be developed on the develop branch.
+
+## Trunk-based Development Workflow
+
+In the trunk-based development model, all developers work on a single branch with open access to it.
+
+Short-lived feature branches are created in order to develop new features, and once code on their branch compiles and passes all tests, the developers merge it straight to master. It ensures that development is truly continuous and prevents developers from creating merge conflicts that are difficult to resolve.
+
+# Angular libraries
+
+## Branching
+Trunk-based development model has been selected for branching.
+
+### Feature branches
+
+Feature branches should be named according to the following pattern:
+
+feature-{IssueShortTitle}
+
+where {ShortTitle} is written using [UpperCamelCase](https://es.wikipedia.org/wiki/CamelCase)
 
 Examples
-- master-B12-DisableDragAndDrop
-- 4.1.x-F68-RoleDirective
+- feature-DisableDragAndDrop
+- feature-RoleDirective
 
+### Release branches
 
-## Maintenance branches
+After a release, it is needed to manage a release branch.
 
-After a feature release, it is needed to manage a maintenance branch.
+Release branches will be named as release-Major.Minor.x, for example release-5.12.x
 
-First, if you wish to continue to release maintenance fixes for the feature release made before the recent one, then you must create another branch to track commits for that previous release.
+Rules to 'Require pull request reviews before merging' must be applied to every release branch. You can use wildcards in order to do so: release-* will do the work
 
-To do this, the feature branch is copied to another branch named with the previous release version number.
-
-Maintenance branches will be named as Major.Minor.x, for example 5.12.x
-
-Rules to 'Require pull request reviews before merging' must be applied to every maintenance branch. You can use wildcards in order to do so: \[1-9]\*.* will do the work
-
-### Branching procedure
+#### Branching procedure
 
 For a new change:
 
-- If it is minor change, the contributor should create a new maintenance branch, for example 5.13.x
-- If it is major change (this is usually something that you should do from the master branch), the contributor should create a new maintenance branch, for example 6.0.x.
+- If it is minor change, the contributor should create a new release branch, for example 5.13.x
+- If it is major change (this is usually something that you should do from the master branch), the contributor should create a new release branch, for example 6.0.x.
 - You do not need to create a new branch for a patch change.
 
-In order to add changes to a maintenance branch:
+In order to add changes to a release branch:
 
- - Create a new working branch from the maintenance branch.
- - Commit the changes to the new working branch.
- - Create a Pull Request from the working branch to the maintenance branch.
+ - Create a new feature branch from the release branch.
+ - Commit the changes to the new feature branch.
+ - Create a Pull Request from the feature branch to the release branch.
  - Once the Pull Request is approved it is time to merge the changes. Will be the submitter the responsible for merging.
- - Finally, the working branch could be removed.
+ - Finally, the feature branch could be removed.
 
 > In Angular, before creating the PR, be sure to update, as needed, the npm library version in the package.json file.
 
-### Bug fixing policy
+## Bug fixing policy
 
 When addressing a bug detected on a branch, it should be fixed at least on:
-- The maintenance branch where needed
+- The release branch where needed
 - The master branch
 
 Detected bugs should be tracked as repository issues with the 'Bug' tag. So, their history should indicate for which versions the defect has been fixed.
 
-# Releasing
+## Releasing
 
-## Release
+### Release
 
 The submitter should create a new release, with the tag version vX.Y.Z and release title X.Y.Z.
 
 For Angular libraries, Travis will publish the library to npm.
 
-## Application Release
+### Application Release
 
-> Application, should never rely on libraries that the source code is not on a maintenance branch. So, it will be each project responsibility to check that the library is in a maintenance branch, or otherwise create it.
+> Application, should never rely on libraries that the source code is not on a release branch. So, it will be each project responsibility to check that the library is in a release branch, or otherwise create it.
 
 
 
