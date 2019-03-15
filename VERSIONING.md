@@ -23,7 +23,7 @@ In most cases we are going to use Git flow for our projects, but for the librari
 
 In the Git flow development model, one main development branch is considered.
 
-Feature branches are created from de development branch and once they are done, pull requests are created.
+Feature branches are created from the development branch and once they are done, pull requests are created.
 
 Once the pull requests are accepted and merged to the main branch, and it’s decided that the main branch has reached enough maturity to be released,
 a separate branch is created to prepare a final version.
@@ -81,11 +81,15 @@ In order to add changes to a release branch:
 
 ## Bug fixing policy
 
-When addressing a bug detected on a branch, it should be fixed at least on:
-- The release branch where needed
-- The master branch
 
-Detected bugs should be tracked as repository issues with the 'Bug' tag. So, their history should indicate for which versions the defect has been fixed.
+Defects should be first classified according to its severity (i.e, low, medium and high).
+
+- For high severity defects, fix should be done on all the active release branches (let's say release branches used by at least one project) as well as on master branch.
+- For medium severity defects, fix should be done on the release branch where it was found and all further active release branches.
+- For low severity defects, fix should be done only on the release branch where it was found as well as on master branch.
+
+Defects should be tracked as repository issues with the 'Bug' tag. So, their history should indicate for which versions the defect has been fixed.
+
 
 ## Releasing
 
