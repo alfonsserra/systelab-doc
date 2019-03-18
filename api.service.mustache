@@ -1,0 +1,152 @@
+{{>licenseInfo}}
+/* tslint:disable:no-unused-variable member-ordering */
+
+import { Inject, Injectable, Optional }                      from '@angular/core';
+{{#useHttpClient}}
+import { HttpClient, HttpHeaders, HttpParams,
+         HttpResponse, HttpEvent }                           from '@angular/common/http';
+import { CustomHttpUrlEncodingCodec }                        from '../encoder';
+{{/useHttpClient}}
+{{^useHttpClient}}
+import { Http, Headers, URLSearchParams }                    from '@angular/http';
+import { RequestMethod, RequestOptions, RequestOptionsArgs } from '@angular/http';
+import { Response, ResponseContentType }                     from '@angular/http';
+import { CustomQueryEncoderHelper }                          from '../encoder';
+{{/useHttpClient}}
+
+{{^useRxJS6}}
+import { Observable }                                        from 'rxjs/Observable';
+{{/useRxJS6}}
+{{#useRxJS6}}
+import { Observable }                                        from 'rxjs';
+{{/useRxJS6}}
+{{^useHttpClient}}
+import '../rxjs-operators';
+{{/useHttpClient}}
+
+{{#imports}}
+import { {{classname}} } from '../{{filename}}';
+{{/imports}}
+
+import { BASE_PATH }                                         from '../variables';
+{{#withInterfaces}}
+import { {{classname}}Interface }                            from './{{classFilename}}Interface';
+{{/withInterfaces}}
+
+{{#operations}}
+
+{{#description}}
+/**
+ * {{&description}}
+ */
+{{/description}}
+{{^providedInRoot}}
+@Injectable()
+{{/providedInRoot}}
+{{#providedInRoot}}
+@Injectable({
+  providedIn: 'root'
+})
+{{/providedInRoot}}
+{{#withInterfaces}}
+export class {{classname}} implements {{classname}}Interface {
+{{/withInterfaces}}
+{{^withInterfaces}}
+export class {{classname}} extends BaseService {
+{{/withInterfaces}}
+
+    constructor(protected {{#useHttpClient}}httpClient: HttpClient{{/useHttpClient}}{{^useHttpClient}}http: Http{{/useHttpClient}}, protected apiGlobalsService: ApiGlobalsService, @Optional()@Inject(BASE_PATH) basePath: string) {
+		super(basePath, apiGlobalsService);
+    }
+
+
+{{#operation}}
+    /**
+     * {{summary}}
+     * {{notes}}
+     {{#allParams}}* @param {{paramName}} {{description}}
+     {{/allParams}}
+     */
+    {{#useHttpClient}}
+    public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}} {{/allParams}}): Observable<{{#returnType}}{{{returnType}}}{{#isResponseTypeFile}}|undefined{{/isResponseTypeFile}}{{/returnType}}{{^returnType}}any{{/returnType}}> {
+    {{/useHttpClient}}
+    {{^useHttpClient}}
+    public {{nickname}}WithHttpInfo({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
+    {{/useHttpClient}}
+{{#allParams}}
+{{#required}}
+        if ({{paramName}} === null || {{paramName}} === undefined) {
+            throw new Error('Required parameter {{paramName}} was null or undefined when calling {{nickname}}.');
+        }
+{{/required}}
+{{/allParams}}
+
+{{#hasQueryParams}}
+        {{#useHttpClient}}
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        {{/useHttpClient}}
+{{#queryParams}}
+        {{#isListContainer}}
+        if ({{paramName}}) {
+        {{#isCollectionFormatMulti}}
+            {{paramName}}.forEach((element) => {
+                {{#useHttpClient}}queryParameters = {{/useHttpClient}}queryParameters.append('{{baseName}}', <any>element);
+            })
+        {{/isCollectionFormatMulti}}
+        {{^isCollectionFormatMulti}}
+            {{#useHttpClient}}queryParameters = {{/useHttpClient}}queryParameters.set('{{baseName}}', {{paramName}}.join(COLLECTION_FORMATS['{{collectionFormat}}']));
+        {{/isCollectionFormatMulti}}
+        }
+        {{/isListContainer}}
+        {{^isListContainer}}
+        if ({{paramName}} !== undefined && {{paramName}} !== null) {
+        {{#isDateTime}}
+            {{#useHttpClient}}queryParameters = {{/useHttpClient}}queryParameters.set('{{baseName}}', <any>{{paramName}}.toISOString());
+        {{/isDateTime}}
+        {{^isDateTime}}
+            {{#useHttpClient}}queryParameters = {{/useHttpClient}}queryParameters.set('{{baseName}}', <any>{{paramName}});
+        {{/isDateTime}}
+        }
+        {{/isListContainer}}
+{{/queryParams}}
+{{/hasQueryParams}}
+{{#useHttpClient}}
+        return this.httpClient.{{httpMethod}}{{^isResponseFile}}<{{#returnType}}{{{returnType}}}{{#isResponseTypeFile}}|undefined{{/isResponseTypeFile}}{{/returnType}}{{^returnType}}any{{/returnType}}>{{/isResponseFile}}(`${this.basePath}{{{path}}}`,{{#isBodyAllowed}}
+            {{#bodyParam}}{{paramName}}{{/bodyParam}}{{^bodyParam}}{{#hasFormParams}}convertFormParamsToString ? formParams.toString() : formParams{{/hasFormParams}}{{^hasFormParams}}null{{/hasFormParams}}{{/bodyParam}},{{/isBodyAllowed}}
+            {
+{{#hasQueryParams}}
+                params: queryParameters,
+{{/hasQueryParams}}
+                headers: this.getAuthorizationHeader()
+            }
+        );
+{{/useHttpClient}}
+{{^useHttpClient}}
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: {{httpMethod}},
+            headers: headers,
+{{#bodyParam}}
+            body: {{paramName}} == null ? '' : JSON.stringify({{paramName}}), // https://github.com/angular/angular/issues/10612
+{{/bodyParam}}
+{{#hasFormParams}}
+            body: convertFormParamsToString ? formParams.toString() : formParams,
+{{/hasFormParams}}
+{{#isResponseFile}}
+            responseType: ResponseContentType.Blob,
+{{/isResponseFile}}
+{{#hasQueryParams}}
+            search: queryParameters,
+{{/hasQueryParams}}
+            withCredentials:this.configuration.withCredentials
+        });
+        // issues#4037
+        if (extraHttpRequestParams) {
+            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(`${this.configuration.basePath}{{{path}}}`, requestOptions);
+{{/useHttpClient}}
+    }
+
+{{/operation}}}
+{{/operations}}
