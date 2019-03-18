@@ -28,5 +28,5 @@ So, an option is get one file form there, customize it, at use it as your defaul
 
 > You do not need to redefine all the templates, only the ones you want to change. 
 
-In this folder you will find a template example named api.service.mustache, that lets you customize 
+In this folder you will find a template example named [api.service.mustache](https://github.com/systelab/systelab-doc/blob/master/api.service.mustache), that lets you customize 
 the service files generated for typescript-angular
