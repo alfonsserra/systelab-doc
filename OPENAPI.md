@@ -1,6 +1,6 @@
-# Generate the client
+# Generate REST Api clients
 
-In order to generate your client use https://github.com/OpenAPITools/openapi-generator. 
+In order to generate the client for a REST Api specified with OpenApi, use https://github.com/OpenAPITools/openapi-generator. 
 Download the jar file from [sonatype](https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/4.0.0-SNAPSHOT/)
 
 Run the generator with the command:
