@@ -6,7 +6,7 @@ To do so, download the jar file from [Sonatype repository](https://oss.sonatype.
 Once downloaded, run the generator with the command:
 
 ```bash
-java -jar openapi-generator-cli-4.0.0.jar generate -i /Users/aserra/General/swagger-codegen/openapifile.json -g typescript-angular -o /Users/aserra/General/swagger-codegen/output
+java -jar openapi-generator-cli-4.0.0.jar generate -i /Users/user/General/swagger-codegen/openapifile.json -g typescript-angular -o /Users/user/General/swagger-codegen/output
 ```
 
 Parameters and its meaning are:
