@@ -30,4 +30,4 @@ An option is to get one file from there, customize it, at use it as your default
 
 > You do not need to redefine all the templates, only the ones you want to change. 
 
-In this folder you will find an example template named [api.service.mustache](https://github.com/systelab/systelab-doc/blob/master/api.service.mustache), that lets you customize the service files generated for typescript-angular
+In this folder you will find an example template named [api.service.mustache](https://github.com/systelab/systelab-doc/blob/master/openapi/example1/api.service.mustache), that lets you customize the service files generated for typescript-angular
