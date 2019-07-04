@@ -18,4 +18,9 @@ It is usually implementend as an API endpoint (e.g. HTTP /health) that returns t
 - application specific logic
 
 Health-check endpoints are called frequently and within fixed intervals, therefore your latencies should ideally be small. Enforce an overall upper bound for your health-check response and make sure to cancel any pending checks to the downstream dependencies in case of timeout.
+It’s not intended (although could be used) as a monitoring solution for human operators.
+
+# Implementations
+
+Check [MicroProfile Health](https://microprofile.io/project/eclipse/microprofile-health) and [Springboot Actuator Health](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health)
 
