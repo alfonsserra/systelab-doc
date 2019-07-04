@@ -7,13 +7,13 @@ tools which can be used with Prometheus.
 
 In order to setup an initial environment, read to the documentation at the [systelab/prometheus-monitoring](https://github.com/systelab/prometheus-monitoring) repository.
 
-# Design Considerations
+## Design Considerations
 It is usually implemented as an API endpoint (e.g. HTTP /metrics) that returns the metrics of the service in an specific format.
 It is possible to have different endpoints each one with metrics related to a specific category.
 It is quite common to have an API endpoint (e.g. HTTP /metrics/prometehus) to return metrics in Prometheus format.
 
 
-## Prometheus metrics / OpenMetrics format
+### Prometheus metrics / OpenMetrics format
 Prometheus metrics text-based format is line oriented. Lines are separated by a line feed character (\n). 
 The last line must end with a line feed character. Empty lines are ignored.
 
@@ -59,5 +59,8 @@ perform metric aggregation, scoping and segmentation.
 Check the [prometheus repository official documentation for metrics format](https://github.com/prometheus/docs/blob/master/content/docs/instrumenting/exposition_formats.md).
 
 Using these labels and metadata to slice and dice your metrics is an absolute requirement when deploying the application in production, specially if it involves many instances.
+
+## Implementations
+Check [MicroProfile Metrics](https://github.com/eclipse/microprofile-metrics) and [Micrometer](https://micrometer.io/docs/registry/prometheus)
 
 
