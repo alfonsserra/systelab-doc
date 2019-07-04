@@ -1,6 +1,6 @@
 # Health Check
 
-Every application should be able to find out very easily whether is healthy or not. 
+Every application should be able to find out very easily whether is healthy, e.g. is running well, or not. 
 
 Implementing a simple health-check API will allow you to do just that.
 
@@ -11,13 +11,13 @@ There are several uses cases where this make sense:
 - A Load balancer distributing traffic to your application or a service discovery (a registry that among other things may periodically checks health of the application hosts) uses liveness probes to be sure that an application running on a specific host will be unable to serve traffic when it’s unhealthy. If found unhealthy, a load balancer may take that host running the application out of rotation, or in case of a service discovery, web service query using DNS will omit the unhealthy host.
 
 # Design Considerations
-It is usually implementend as an API endpoint (e.g. HTTP /health) that returns the health of the service. The API endpoint handler performs various checks, such as
+It is usually implemented as an API endpoint (e.g. HTTP /health) that returns the health of the service. The API endpoint handler could perform various checks, such as
 
-- the status of the connections to the infrastructure services used by the service instance
-- the status of the host, e.g. disk space
+- the status of the connections to the infrastructure database
+- the status of the host resources, e.g. disk space
 - application specific logic
 
-Health-check endpoints are called frequently and within fixed intervals, therefore your latencies should ideally be small. Enforce an overall upper bound for your health-check response and make sure to cancel any pending checks to the downstream dependencies in case of timeout.
+Health-check endpoints are called frequently and within fixed intervals, therefore your latencies should ideally be small. 
 It’s not intended (although could be used) as a monitoring solution for human operators.
 
 # Implementations
