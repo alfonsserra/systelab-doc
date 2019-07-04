@@ -9,7 +9,8 @@ In order to setup an initial environment, read to the documentation at the [syst
 
 # Design Considerations
 It is usually implemented as an API endpoint (e.g. HTTP /metrics) that returns the metrics of the service in an specific format.
-It is possible to have different endpoints each one with metrics related to an specific category.
+It is possible to have different endpoints each one with metrics related to a specific category.
+It is quite common to have an API endpoint (e.g. HTTP /metrics/prometehus) to return metrics in Prometheus format.
 
 
 ## Prometheus metrics / OpenMetrics format
