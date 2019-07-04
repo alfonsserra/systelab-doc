@@ -54,5 +54,5 @@ traefik_entrypoint_request_duration_seconds_count{code="404",entrypoint="traefik
 
 The key advantage of this notation is that all these dimensional labels can be used by the metric consumer to dynamically 
 perform metric aggregation, scoping and segmentation. Using these labels and metadata to slice and dice your metrics is 
-an absolute requirement when deploying the application in production, specially if it involves many servers.
+an absolute requirement when deploying the application in production, specially if it involves many instances.
 
