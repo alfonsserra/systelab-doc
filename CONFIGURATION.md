@@ -27,3 +27,12 @@ More information at [HashiCorp](https://www.hashicorp.com/blog/official-consul-d
 ### Running Spring Cloud Config Server
 
 Check the [systelab/config-service respository](https://github.com/systelab/config-service) and [systelab/discovery-service repository](https://github.com/systelab/discovery-service) for more information.
+
+## Recomended readings
+
+Hashicorp Consul [website](https://www.consul.io).
+
+A Quick Guide to Spring Cloud [Consul](https://www.baeldung.com/spring-cloud-consul).
+
+Quarkus configuration using [Consul](https://medium.com/@yazidaqel/quarkus-configuration-using-consul-d077dc6d5d3).
+
