@@ -16,6 +16,9 @@ When using a Config Server, the most advanced solution, the client will consume 
 
 When considering a Config Server, some kind of Service discovery will be probably involved.
 
+When the application is deployed using a container and using container orchestration (in this case Kubernetes) for its management, environment variables or Kubernetes ConfigMap for centralized configuration could be fine.
+
+
 ### Running Consul
 If you want a working development Consul server running instantly, use the docker image provided by HashiCorp, running in the command line:
 
