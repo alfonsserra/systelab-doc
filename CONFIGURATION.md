@@ -26,4 +26,4 @@ More information at [HashiCorp](https://www.hashicorp.com/blog/official-consul-d
 
 ### Running Spring Cloud Config Server
 
-Check the [systelab/config-service respository](https://github.com/systelab/config-service) and [https://github.com/systelab/discovery-service](https://github.com/systelab/discovery-service) for more information.
+Check the [systelab/config-service respository](https://github.com/systelab/config-service) and [systelab/discovery-service repository](https://github.com/systelab/discovery-service) for more information.
