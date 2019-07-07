@@ -14,4 +14,10 @@ Usually the application enables more than one options and difines a priority pol
 
 When using a Config Server, the most advanced solution, the client will consume the configuration on startup and then refresh the configuration without restarting the client to externalize configuration. There are several options like [HashiCorp Consul](https://www.consul.io/configuration.html) or [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config/multi/multi__spring_cloud_config_server.html).
 
+### Running Consul
+If you want a working development Consul server running instantly, use the docker image provided by HashiCorp, running in the command line:
 
+```
+docker run -p 8500:8500 -p 8300:8300 -p 8301:8301 -p 8302:8302 consul
+```
+More informaion at [HashiCorp](https://www.hashicorp.com/blog/official-consul-docker-image)
