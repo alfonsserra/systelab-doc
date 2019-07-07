@@ -16,7 +16,7 @@ When using a Config Server, the most advanced solution, the client will consume 
 
 When considering a Config Server, some kind of Service discovery will be probably involved.
 
-When the application is deployed using a container and using container orchestration (in this case Kubernetes) for its management, environment variables or Kubernetes ConfigMap for centralized configuration could be fine.
+When the application is deployed as a container, environment variables could be used. When using container orchestration Kubernetes ConfigMap for centralized configuration could be another option.
 
 
 ### Running Consul
