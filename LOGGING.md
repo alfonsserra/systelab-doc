@@ -1,8 +1,11 @@
 # Logging
 
 Logs are the stream of aggregated, time-ordered events collected from the output streams of a running process.
+
 Logs in their raw form are typically a text format with one event per line (though backtraces from exceptions may span 
-multiple lines). Logs have no fixed beginning or end, but flow continuously as long as the app is running.
+multiple lines). 
+
+Logs have no fixed beginning or end, but flow continuously as long as the app is running.
 
 ## Design Considerations
 
