@@ -16,3 +16,9 @@ An agreement in the frameworks to use, the log formats and information about abo
 centralized manner, for example with ELK, it is be priceless.
 
 Finally, it worth to mention that the Twelve-factor applications manifesto tell us to do not attempt to write to or manage logfiles, suggesting that each running process should write its event stream, unbuffered, to stdout.
+
+### Encryption
+
+Log encryption is another popular topic in today's world, because log files often lead to information leaking out, for the information that the files contain and for the fact that usually are saved in plain text.
+
+ 
