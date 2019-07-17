@@ -24,3 +24,4 @@ It’s not intended (although could be used) as a monitoring solution for human 
 
 Check [MicroProfile Health](https://microprofile.io/project/eclipse/microprofile-health) and [Springboot Actuator Health](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health)
 
+For .NET check [ASP.NET Core built-in health monitoring](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/implement-resilient-applications/monitor-app-health)
